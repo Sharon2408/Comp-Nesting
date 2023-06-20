@@ -1,0 +1,19 @@
+<table border="5px">
+    <tr>
+        <th>Product Name</th>
+        <th>Product Price</th>
+    </tr>
+    <tr *ngFor="let item of parentProductList">
+        <td>{{item}}</td>
+        <td><span>
+            <button (click)="getquantity(value)" >+</button>
+        </span>
+        <ng-container >
+        <input type="text" [value]="value">
+    </ng-container>
+        <button (click)="decquantity(value)" >-</button>
+    </td>
+    </tr>
+
+
+</table>

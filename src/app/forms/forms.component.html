@@ -1,0 +1,79 @@
+<div class="no-style" style="margin-left: 4px">
+
+    <div class="container">
+
+        <h1>Template Driven Form</h1>
+
+        <form #registration="ngForm" (ngSubmit)="registration.form.valid && onSubmit(registration)" novalidate>
+
+            <div class="form-group">
+
+                <label for="name">Name</label>
+
+                <input type="text" class="form-control" id="name" name="name" required minlength="4"
+                    [(ngModel)]="model.name" #name="ngModel"
+                    [ngClass]="{ 'is-invalid': registration.submitted && name.invalid }" maxlength="10" required >
+
+
+                <div class="invalid-feedback" *ngIf="registration.submitted && name.invalid">
+
+                    <p *ngIf="name.errors?.['required']">Name is required</p>
+
+
+                </div>
+                <div class="invalid-feedback" *ngIf="registration.submitted && name.invalid">
+
+                    <p *ngIf="name.errors?.['minlength']">Name should be atleast 4 charachter long</p>
+
+
+                </div>
+                <div class="invalid-feedback" *ngIf="registration.submitted && name.invalid">
+
+                    <p *ngIf="name.errors?.['maxlength']">Name should be omly 10 charachter long</p>
+
+
+                </div>
+
+            </div>
+
+            <br>
+
+            <div class="form-group">
+
+                <label for="Email-ID">Email-ID</label>
+
+                <input type="email" class="form-control" name="email" id="email" [(ngModel)]="model.email" #email="ngModel"
+                    [ngClass]="{'is-invalid': registration.submitted && email.invalid}" required>
+                
+                    <div class="invalid-feedback" *ngIf="registration.submitted && email.invalid">
+                    
+                        <p *ngIf="email.errors?.['required']">Email is Required</p>
+                
+                    </div>
+            
+                </div>
+            <br>
+            
+            <div class="form-group">
+                <label for="Password">Password</label>
+                <input type="password" class="form-control" #password="ngModel" name="password" id="password" [(ngModel)]="model.password" [ngClass]="{'is-invalid': registration.submitted && email.invalid}" required>
+                <div class="invalid-feedback" *ngIf="registration.submitted && password.invalid" >
+                    
+                    <p *ngIf="password.errors?.['required']">Password is Required</p>
+            
+                </div>
+            </div>
+
+            <br>
+            <div class="form-group">
+                <label for="power">Skills</label>
+                <select class="form-control" id="power" required>
+                    <option value="Skills" disabled>select</option>
+                    <option *ngFor="let pow of powers" [value]="pow">{{pow}}</option>
+                </select>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-success">Submit</button>
+
+        </form>
+    </div>
